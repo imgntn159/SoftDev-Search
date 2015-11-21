@@ -12,6 +12,16 @@ def home():
 @app.route("/results", methods = ["POST"])
 def results():
     answer = str(request.form["search"])
+    '''
+    pages = google.search(answer,num=10,start=0,stop=10)
+    plist = []
+    for r in pages:
+        page = (urllib2.urlopen(plist[8]).read().decode('ascii'))
+        plist.append(bs4.BeautifulSoup(page).get_text(page))
+        
+    #Each item in plist contains raw text from the urls, taken from classcode
+    #Here we'd add a regex/algorithm to look for whatever
+    '''
     return render_template("results.html", answer = answer)
 
 if __name__ == "__main__":
