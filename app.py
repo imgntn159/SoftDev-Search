@@ -22,6 +22,18 @@ def results():
     #Each item in plist contains raw text from the urls, taken from classcode
     #Here we'd add a regex/algorithm to look for whatever
     '''
+    
+    '''
+    dict = {'Not Found': 0}
+    #For loop for regex
+    if 'name' in tel:
+        dict['name'] += 1
+    else:
+        dict['name'] = 0
+    '''
+    
+    '/([A-Z])\w+\s+([A-Z])\w+/g'
+    
     return render_template("results.html", answer = answer)
 
 if __name__ == "__main__":
