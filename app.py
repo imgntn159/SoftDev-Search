@@ -17,11 +17,12 @@ def results():
     plist = []
     for r in pages:
         print("1" + r)
-        page = (urllib2.urlopen(r).read().decode('utf-8'))
+        page = urllib2.urlopen(r).read().decode('utf-8')
         plist.append(bs4.BeautifulSoup(page).get_text(page))
     #Each item in plist contains the raw text, partly taken by classcode
     
-    pstr = '' 
+    pstr = ''
+    print(len(plist))
     for p in plist:
         print("2")
         pstr+=p
@@ -37,9 +38,9 @@ def results():
     for name in names:
         print("3")
         if name in d:
-            d['name'] += 1
+            d[name] += 1
         else:
-            d['name'] = 1
+            d[name] = 1
     finalAns = ''
     finalNum = 0
     for n in d:
