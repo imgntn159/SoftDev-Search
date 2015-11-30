@@ -20,29 +20,35 @@ def results():
         plist.append(bs4.BeautifulSoup(page).get_text(page))
     #Each item in plist contains the raw text, partly taken by classcode
     
-    allString = '' 
+    pstr = '' 
     for p in plist:
-        allString+=p
-        allString+=' '
+        pstr+=p
+        pstr+=' '
     #A string centipede of the raw texts with spaces inbetween for the regex function
     
-    pattern = '/[A-Z]\w+\s+[A-Z]\w+/g'
+    pattern = '[A-Z]\w+\s+[A-Z]\w+'
     #Here we'd add a regex/algorithm to look for whatever
     
-    '''
-    dict = {'Not Found': 0}
-    #For loop for regex
-    if 'name' in tel:
-        dict['name'] += 1
-    else:
-        dict['name'] = 0
-    '''
+    names = re.findall(pattern, pstr)
+
+    d = {'Not Found': 0}
+    for name in names:
+        if name in d:
+            d['name'] += 1
+        else:
+            d['name'] = 1
+    finalAns = ''
+    finalNum = 0
+    for n in d:
+        if d[n] > finalNum:
+            finalNum = d[n]
+            finalAns = n
     
-    '/([A-Z])\w+\s+([A-Z])\w+/g'
     
-    return render_template("results.html", answer = answer)
+    return render_template("results.html", answer = finalAns)
 
 if __name__ == "__main__":
     app.debug = True
     app.run()
+    #host='0.0.0.0', port=8080
     
