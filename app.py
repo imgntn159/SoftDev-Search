@@ -16,12 +16,14 @@ def results():
     pages = google.search(answer,num=10,start=0,stop=10)
     plist = []
     for r in pages:
-        page = (urllib2.urlopen(r).read().decode('ascii'))
+        print("1" + r)
+        page = (urllib2.urlopen(r).read().decode('utf-8'))
         plist.append(bs4.BeautifulSoup(page).get_text(page))
     #Each item in plist contains the raw text, partly taken by classcode
     
     pstr = '' 
     for p in plist:
+        print("2")
         pstr+=p
         pstr+=' '
     #A string centipede of the raw texts with spaces inbetween for the regex function
@@ -33,6 +35,7 @@ def results():
 
     d = {'Not Found': 0}
     for name in names:
+        print("3")
         if name in d:
             d['name'] += 1
         else:
@@ -40,6 +43,7 @@ def results():
     finalAns = ''
     finalNum = 0
     for n in d:
+        print("4")
         if d[n] > finalNum:
             finalNum = d[n]
             finalAns = n
