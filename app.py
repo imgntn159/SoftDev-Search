@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-import google, bs4, re
+import google, bs4, re, urllib2
 
 
 app = Flask(__name__)
@@ -12,16 +12,22 @@ def home():
 @app.route("/results", methods = ["POST"])
 def results():
     answer = str(request.form["search"])
-    '''
+    
     pages = google.search(answer,num=10,start=0,stop=10)
     plist = []
     for r in pages:
-        page = (urllib2.urlopen(plist[8]).read().decode('ascii'))
+        page = (urllib2.urlopen(r).read().decode('ascii'))
         plist.append(bs4.BeautifulSoup(page).get_text(page))
-        
-    #Each item in plist contains raw text from the urls, taken from classcode
+    #Each item in plist contains the raw text, partly taken by classcode
+    
+    allString = '' 
+    for p in plist:
+        allString+=p
+        allString+=' '
+    #A string centipede of the raw texts with spaces inbetween for the regex function
+    
+    pattern = '/[A-Z]\w+\s+[A-Z]\w+/g'
     #Here we'd add a regex/algorithm to look for whatever
-    '''
     
     '''
     dict = {'Not Found': 0}
