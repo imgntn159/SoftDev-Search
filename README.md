@@ -1,2 +1,3 @@
 # SoftDev-Search
-making our own search with the stuff we know
+A Code-Answering Project  
+By Derry Li and Kaizen Castanos 
